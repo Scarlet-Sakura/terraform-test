@@ -44,10 +44,13 @@ resource "aws_instance" "blog" {
   }
 }
 
-module "alb" {
+module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
-  
-  name    = "blog-alb"
+  version = "~> 6.0"
+
+  name = "blog-alb"
+
+  load_balancer_type = "application"
 
   vpc_id          = module.blog_vpc.vpc_id
   subnets         = module.blog_vpc.public_subnets
@@ -63,12 +66,14 @@ target_groups = [
     }
   ]
 
- listeners = {
-    ex-http = {
-      port     = 80
-      protocol = "HTTP"
+    http_tcp_listeners = [
+    {
+      port               = 80
+      protocol           = "HTTP"
+      target_group_index = 0
     }
- } 
+  ]
+
   tags = {
     Environment = "dev"
   }
