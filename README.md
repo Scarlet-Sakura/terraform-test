@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# terraform-test
-=======
 # Learning Terraform
 This is the repository for the LinkedIn Learning course `Learning Terraform`. The full course is available from [LinkedIn Learning][lil-course-url].
 
@@ -18,4 +15,3 @@ The `main` branch contains the starting code for the course and the `final` bran
 [lil-course-url]: https://www.linkedin.com/learning/
 [lil-thumbnail-url]: http://
 
->>>>>>> 215aec2 (commit message)
