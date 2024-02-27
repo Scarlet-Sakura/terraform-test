@@ -1,3 +1,3 @@
 output "environment_urls" {
-    value = madule.blog_alb.dns_name
+    value = module.blog_alb.dns_name
 }
