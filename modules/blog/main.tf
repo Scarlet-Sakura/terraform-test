@@ -54,7 +54,7 @@ module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
-  name = "blog-alb"
+  name = "${var.environment.name}-blog-alb"
 
   load_balancer_type = "application"
 
@@ -65,7 +65,7 @@ module "blog_alb" {
   
 target_groups = [
     {
-      name_prefix      = "blog-"
+      name_prefix      = "${var.environment.name}"
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
@@ -81,7 +81,7 @@ target_groups = [
   ]
 
   tags = {
-    Environment = "dev"
+    Environment = var.environment.name
   }
 
 }
@@ -89,7 +89,7 @@ target_groups = [
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.0"
-  name    = "blog"
+  name    = "${var.environment.name}-blog"
 
   vpc_id = module.blog_vpc.vpc_id
 
